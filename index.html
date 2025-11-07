@@ -43,7 +43,99 @@
               <div class="menu-item-text">Dashboard</div>
             </div>
           </div>
-          </nav>
+           <!-- Cadastros -->
+          <div class="menu-item" onclick="toggleSubmenu('cadastros')">
+            <div class="menu-item-content">
+              <span class="icon">📝</span>
+              <div class="menu-item-text">Cadastros</div>
+            </div>
+            <span class="menu-arrow">▶</span>
+          </div>
+          <div class="submenu" id="submenu-cadastros">
+            <div class="submenu-item" onclick="showSection('doadores', event)">
+              👥 Doadores
+            </div>
+            <div
+              class="submenu-item"
+              onclick="showSection('instituicoes', event)"
+            >
+              🏢 Instituições
+            </div>
+            <div
+              class="submenu-item"
+              onclick="showSection('voluntarios', event)"
+            >
+              🤝 Voluntários
+            </div>
+          </div>
+
+          <!-- Operações -->
+          <div class="menu-item" onclick="toggleSubmenu('operacoes')">
+            <div class="menu-item-content">
+              <span class="icon">⚙️</span>
+              <div class="menu-item-text">Operações</div>
+            </div>
+            <span class="menu-arrow">▶</span>
+          </div>
+          <div class="submenu" id="submenu-operacoes">
+            <div class="submenu-item" onclick="showSection('doacoes', event)">
+              💝 Doações
+            </div>
+            <div class="submenu-item" onclick="showSection('coletas', event)">
+              🚚 Coletas
+            </div>
+            <div
+              class="submenu-item"
+              onclick="showSection('distribuicoes', event)"
+            >
+              📦 Distribuições
+            </div>
+          </div>
+
+          <!-- Estoque -->
+          <div class="menu-item" onclick="toggleSubmenu('estoque')">
+            <div class="menu-item-content">
+              <span class="icon">📋</span>
+              <div class="menu-item-text">Estoque</div>
+            </div>
+            <span class="menu-arrow">▶</span>
+          </div>
+          <div class="submenu" id="submenu-estoque">
+            <div class="submenu-item" onclick="showSection('alimentos', event)">
+              🥫 Alimentos
+            </div>
+            <div
+              class="submenu-item"
+              onclick="showSection('movimentacoes', event)"
+            >
+              📊 Movimentações
+            </div>
+            <div
+              class="submenu-item"
+              onclick="showSection('categorias', event)"
+            >
+              🏷️ Categorias
+            </div>
+          </div>
+
+          <!-- Campanhas -->
+          <div class="menu-item" onclick="showSection('campanhas')">
+            <div class="menu-item-content">
+              <span class="icon">📢</span>
+              <div class="menu-item-text">Campanhas</div>
+            </div>
+          </div>
+
+          <!-- Relatórios -->
+          <div class="menu-item" onclick="showSection('relatorios')">
+            <div class="menu-item-content">
+              <span class="icon">📈</span>
+              <div class="menu-item-text">Relatórios</div>
+            </div>
+          </div>
+        </nav>
+      </aside>
+
     <script src="src/script/script.js"></script>
   </body>
 </html>
