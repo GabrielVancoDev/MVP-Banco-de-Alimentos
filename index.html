@@ -606,8 +606,309 @@
             </table>
           </div>
         </section>
+<!-- Alimentos -->
+        <section id="alimentos" class="content-section">
+          <div class="section-header">
+            <h2>Controle de Alimentos</h2>
+            <p>Gerencie os alimentos disponíveis</p>
+          </div>
 
+          <div class="form-container">
+            <h3>Cadastrar Alimento</h3>
+            <form id="form-alimento" onsubmit="cadastrarAlimento(event)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Nome do Alimento *</label>
+                  <input type="text" name="nome" required />
+                </div>
+                <div class="form-group">
+                  <label>Categoria *</label>
+                  <select name="categoria" required>
+                    <option value="">Selecione</option>
+                    <option value="Grãos">Grãos</option>
+                    <option value="Enlatados">Enlatados</option>
+                    <option value="Massas">Massas</option>
+                    <option value="Óleos">Óleos</option>
+                    <option value="Bebidas">Bebidas</option>
+                    <option value="Outros">Outros</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Quantidade *</label>
+                  <input type="number" step="0.01" name="quantidade" required />
+                </div>
+                <div class="form-group">
+                  <label>Unidade de Medida *</label>
+                  <select name="unidade" required>
+                    <option value="kg">Quilogramas (kg)</option>
+                    <option value="un">Unidades (un)</option>
+                    <option value="l">Litros (l)</option>
+                    <option value="cx">Caixas (cx)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Data de Validade</label>
+                <input type="date" name="validade" />
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Cadastrar Alimento
+              </button>
+            </form>
+          </div>
 
+          <div class="table-container" style="margin-top: 30px">
+            <h3>Alimentos Cadastrados</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Categoria</th>
+                  <th>Quantidade</th>
+                  <th>Unidade</th>
+                  <th>Validade</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="lista-alimentos">
+                <tr>
+                  <td colspan="6" style="text-align: center; color: #7f8c8d">
+                    Nenhum alimento cadastrado
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Movimentações -->
+        <section id="movimentacoes" class="content-section">
+          <div class="section-header">
+            <h2>Movimentações de Estoque</h2>
+            <p>Histórico de entradas e saídas</p>
+          </div>
+
+          <div class="table-container">
+            <h3>Últimas Movimentações</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Tipo</th>
+                  <th>Alimento</th>
+                  <th>Quantidade</th>
+                  <th>Responsável</th>
+                </tr>
+              </thead>
+              <tbody id="lista-movimentacoes">
+                <tr>
+                  <td colspan="5" style="text-align: center; color: #7f8c8d">
+                    Nenhuma movimentação registrada
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Categorias -->
+        <section id="categorias" class="content-section">
+          <div class="section-header">
+            <h2>Categorias de Alimentos</h2>
+            <p>Gerencie as categorias de produtos</p>
+          </div>
+
+          <div class="form-container">
+            <h3>Adicionar Nova Categoria</h3>
+            <form id="form-categoria" onsubmit="cadastrarCategoria(event)">
+              <div class="form-group">
+                <label>Nome da Categoria *</label>
+                <input type="text" name="nome_categoria" required />
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Adicionar Categoria
+              </button>
+            </form>
+          </div>
+
+          <div class="table-container" style="margin-top: 30px">
+            <h3>Categorias Cadastradas</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome da Categoria</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="lista-categorias">
+                <tr>
+                  <td colspan="2" style="text-align: center; color: #7f8c8d">
+                    Nenhuma categoria cadastrada
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+ <!-- Campanhas -->
+        <section id="campanhas" class="content-section">
+          <div class="section-header">
+            <h2>Campanhas de Arrecadação</h2>
+            <p>Organize e gerencie campanhas</p>
+          </div>
+
+          <div class="form-container">
+            <h3>Criar Nova Campanha</h3>
+            <form id="form-campanha" onsubmit="cadastrarCampanha(event)">
+              <div class="form-group">
+                <label>Nome da Campanha *</label>
+                <input type="text" name="nome" required />
+              </div>
+              <div class="form-group">
+                <label>Descrição</label>
+                <textarea name="descricao" rows="3"></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Data de Início *</label>
+                  <input type="date" name="data_inicio" required />
+                </div>
+                <div class="form-group">
+                  <label>Data de Término</label>
+                  <input type="date" name="data_fim" />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Criar Campanha
+              </button>
+            </form>
+          </div>
+
+          <div class="table-container" style="margin-top: 30px">
+            <h3>Campanhas Ativas</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Descrição</th>
+                  <th>Início</th>
+                  <th>Término</th>
+                  <th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="lista-campanhas">
+                <tr>
+                  <td colspan="6" style="text-align: center; color: #7f8c8d">
+                    Nenhuma campanha cadastrada
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+         <!-- Relatórios -->
+        <section id="relatorios" class="content-section">
+          <div class="section-header">
+            <h2>Relatórios Gerenciais</h2>
+            <p>Análises e estatísticas do sistema</p>
+          </div>
+
+          <div class="dashboard-cards">
+            <div class="card">
+              <h3 style="font-size: 16px; margin-bottom: 15px">
+                📊 Doações por Período
+              </h3>
+              <div class="form-row">
+                <input
+                  type="date"
+                  id="rel-data-inicio"
+                  style="
+                    padding: 8px;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                  "
+                />
+                <input
+                  type="date"
+                  id="rel-data-fim"
+                  style="
+                    padding: 8px;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                  "
+                />
+              </div>
+              <button
+                class="btn btn-primary btn-small"
+                style="margin-top: 10px"
+                onclick="gerarRelatorioGeral()"
+              >
+                Gerar Relatório
+              </button>
+            </div>
+
+            <div class="card">
+              <h3 style="font-size: 16px; margin-bottom: 15px">
+                📈 Top Doadores
+              </h3>
+              <p style="color: #7f8c8d; font-size: 14px">
+                Doadores mais ativos do mês
+              </p>
+              <button
+                class="btn btn-primary btn-small"
+                style="margin-top: 10px"
+                onclick="gerarRelatorioDoadores()"
+              >
+                Visualizar
+              </button>
+            </div>
+
+            <div class="card">
+              <h3 style="font-size: 16px; margin-bottom: 15px">
+                🏢 Instituições Atendidas
+              </h3>
+              <p style="color: #7f8c8d; font-size: 14px">
+                Relatório de distribuições
+              </p>
+              <button
+                class="btn btn-primary btn-small"
+                style="margin-top: 10px"
+                onclick="gerarRelatorioInstituicoes()"
+              >
+                Visualizar
+              </button>
+            </div>
+
+            <div class="card">
+              <h3 style="font-size: 16px; margin-bottom: 15px">
+                📦 Estoque Atual
+              </h3>
+              <p style="color: #7f8c8d; font-size: 14px">
+                Status completo do estoque
+              </p>
+              <button
+                class="btn btn-primary btn-small"
+                style="margin-top: 10px"
+                onclick="gerarRelatorioEstoque()"
+              >
+                Visualizar
+              </button>
+            </div>
+          </div>
+
+          <div class="chart-container">
+            <h3>Relatório Gerado</h3>
+            <div id="relatorio-resultado" class="chart-placeholder">
+              <p>Selecione um tipo de relatório acima para visualizar</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
 </main>
     <script src="src/script/script.js"></script>
   </body>
