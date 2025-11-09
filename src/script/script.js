@@ -784,13 +784,7 @@ window.addEventListener("DOMContentLoaded", () => {
         carregarDados();
     });
 
-import { neon } from '@netlify/neon';
-const sql = neon();
 
-async function buscarPost(postId) {
-  const [post] = await sql`SELECT * FROM posts WHERE id = ${postId}`;
-  return post;
-}
 
 async function carregarDoadores() {
   const resposta = await fetch("https://mvp-banco-de-alimentos.vercel.app/");
