@@ -113,3 +113,23 @@ function cadastrarVoluntario(e) {
         atualizarListaVoluntarios();
         alert("Voluntário cadastrado com sucesso!");
 }
+
+function registrarDoacao(e) {
+        e.preventDefault();
+        const form = e.target;
+        const doacao = {
+          id: Date.now(),
+          id_doador: form.id_doador.value,
+          id_instituicao: form.id_instituicao.value,
+          tipo: form.tipo.value,
+          quantidade: form.quantidade.value,
+          data_doacao: form.data_doacao.value,
+        };
+
+        dados.doacoes.push(doacao);
+        salvarDados();
+        form.reset();
+        atualizarListaDoacoes();
+        atualizarDashboard();
+        alert("Doação registrada com sucesso!");
+}
