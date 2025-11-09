@@ -566,3 +566,183 @@ function atualizarTodasListagens() {
     atualizarListaCampanhas();
     atualizarSelects();
 }
+
+function gerarRelatorioGeral() {
+    const dataInicio = document.getElementById("rel-data-inicio").value;
+    const dataFim = document.getElementById("rel-data-fim").value;
+
+    if (!dataInicio || !dataFim) {
+            alert("Por favor, selecione o período para gerar o relatório");
+            return;
+        }
+
+    const doacoesFiltradas = dados.doacoes.filter((d) => {
+            return d.data_doacao >= dataInicio && d.data_doacao <= dataFim;
+        });
+
+    const resultado = document.getElementById("relatorio-resultado");
+    resultado.innerHTML = 
+        `<div style="padding: 20px;">
+            <h4>Relatório de Doações - Período: 
+                ${new Date(dataInicio).toLocaleDateString("pt-BR")} a ${new Date(dataFim).toLocaleDateString("pt-BR")}
+            </h4>
+            <div style="margin-top: 20px;">
+                <p><strong>Total de Doações:</strong> 
+                    ${doacoesFiltradas.length}
+                </p>
+                        
+                <p><strong>Quantidade Total Doada:</strong> 
+                    ${doacoesFiltradas.reduce((acc, d) => acc + parseInt(d.quantidade),0)} unidades
+                </p>
+                <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+                <h5>Detalhamento:</h5>
+                <ul style="list-style: none; padding: 0;">
+                    ${doacoesFiltradas.map((d) => {
+                        const doador = dados.doadores.find((x) => x.id == d.id_doador);
+                        const instituicao = dados.instituicoes.find((x) => x.id == d.id_instituicao);
+                        return 
+                        `<li style="padding: 8px 0; border-bottom: 1px solid #eee;">
+                            ${new Date(d.data_doacao).toLocaleDateString("pt-BR")} - 
+                            ${doador?.nome || "N/A"} → 
+                            ${instituicao?.nome || "N/A"} - 
+                            ${d.quantidade} ${d.tipo}
+                        </li>`;
+                    }).join("")}
+                </ul>
+            </div>
+        </div>`;
+}
+
+function gerarRelatorioDoadores() {
+    const doadoresComTotal = dados.doadores.map((doador) => {
+        const totalDoacoes = dados.doacoes.filter((d) => d.id_doador == doador.id).length;
+        const quantidadeTotal = dados.doacoes.filter((d) => d.id_doador == doador.id).reduce((acc, d) => acc + parseInt(d.quantidade), 0);
+        return { ...doador, totalDoacoes, quantidadeTotal };
+    }).sort((a, b) => b.totalDoacoes - a.totalDoacoes);
+
+    const resultado = document.getElementById("relatorio-resultado");
+    resultado.innerHTML = 
+        `<div style="padding: 20px;">
+            <h4>Top Doadores</h4>
+                <table style="width: 100%; margin-top: 20px; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: #f8f9fa;">
+                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Posição</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Nome</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Total de Doações</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Quantidade Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${doadoresComTotal.slice(0, 10).map((d, i) => 
+                            `<tr>
+                                <td style="padding: 12px; border-bottom: 1px solid #dee2e6;">${
+                                    i + 1
+                                }º</td>
+                                <td style="padding: 12px; border-bottom: 1px solid #dee2e6;">${
+                                    d.nome
+                                }</td>
+                                <td style="padding: 12px; border-bottom: 1px solid #dee2e6;">${
+                                    d.totalDoacoes
+                                }</td>
+                                <td style="padding: 12px; border-bottom: 1px solid #dee2e6;">${
+                                    d.quantidadeTotal
+                                } unidades</td>
+                            </tr>`
+                        ).join("")}
+                    </tbody>
+                </table>
+        </div>`;
+}
+
+function gerarRelatorioInstituicoes() {
+    const instituicoesComTotal = dados.instituicoes.map((inst) => {
+        const totalRecebimentos = dados.doacoes.filter((d) => d.id_instituicao == inst.id).length;
+        const quantidadeTotal = dados.doacoes.filter((d) => d.id_instituicao == inst.id).reduce((acc, d) => acc + parseInt(d.quantidade), 0);
+        return { ...inst, totalRecebimentos, quantidadeTotal };
+    }).sort((a, b) => b.totalRecebimentos - a.totalRecebimentos);
+
+    const resultado = document.getElementById("relatorio-resultado");
+    resultado.innerHTML = 
+        `<div style="padding: 20px;">
+            <h4>Instituições Atendidas</h4>
+            <table style="width: 100%; margin-top: 20px; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #f8f9fa;">
+                        <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Instituição</th>
+                        <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">CNPJ</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Total Recebido</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${instituicoesComTotal.map((i) => 
+                        `<tr>
+                            <td style="padding: 12px; border-bottom: 1px solid #dee2e6;">${i.nome}</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #dee2e6;">${i.cnpj}</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #dee2e6;">${i.totalRecebimentos} doações</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #dee2e6;">${i.quantidadeTotal} unidades</td>
+                        </tr>`).join("")
+                    }
+                </tbody>
+            </table>
+        </div>`;
+}
+
+function gerarRelatorioEstoque() {
+    const alimentosPorCategoria = {};
+        dados.alimentos.forEach((a) => {
+          if (!alimentosPorCategoria[a.categoria]) {
+            alimentosPorCategoria[a.categoria] = [];
+          }
+          alimentosPorCategoria[a.categoria].push(a);
+        });
+
+    const resultado = document.getElementById("relatorio-resultado");
+        resultado.innerHTML = 
+            `<div style="padding: 20px;">
+                <h4>Relatório de Estoque</h4>
+                <p><strong>Total de Itens:</strong> ${
+                        dados.alimentos.length
+                    }
+                </p>
+            <div style="margin-top: 20px;">
+                ${Object.keys(alimentosPorCategoria).map((categoria) => 
+                    `<div style="margin-bottom: 20px;">
+                        <h5 style="background: #f8f9fa; padding: 10px; border-radius: 4px;">${categoria}</h5>
+                            <table style="width: 100%; margin-top: 10px; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="background: #f8f9fa;">
+                                        <th style="padding: 10px; text-align: left; border-bottom: 2px solid #dee2e6;">Alimento</th>
+                                        <th style="padding: 10px; text-align: left; border-bottom: 2px solid #dee2e6;">Quantidade</th>
+                                        <th style="padding: 10px; text-align: left; border-bottom: 2px solid #dee2e6;">Validade</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${alimentosPorCategoria[categoria].map((a) => 
+                                        `<tr>
+                                            <td style="padding: 10px; border-bottom: 1px solid #dee2e6;">${
+                                                a.nome
+                                            }</td>
+                                            <td style="padding: 10px; border-bottom: 1px solid #dee2e6;">${
+                                                a.quantidade
+                                            } ${a.unidade}</td>
+                                            <td style="padding: 10px; border-bottom: 1px solid #dee2e6;">${
+                                                 a.validade
+                                                ? new Date(
+                                                    a.validade
+                                                    ).toLocaleDateString(
+                                                    "pt-BR"
+                                                    )
+                                                    : "Não informado"
+                                                }</td>
+                                            </tr>
+                                        `
+                                    ).join("")}
+                                </tbody>
+                            </table>
+                    </div>
+                    `).join("")}
+            </div>
+        </div>`;
+}
