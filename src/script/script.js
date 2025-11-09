@@ -55,81 +55,101 @@ function showSection(sectionId, event) {
 }
 
 function cadastrarDoador(e) {
-        e.preventDefault();
-        const form = e.target;
-        const doador = {
-          id: Date.now(),
-          nome: form.nome.value,
-          cpf: form.cpf.value,
-          email: form.email.value,
-          telefone: form.telefone.value,
-          endereco: form.endereco.value,
+    e.preventDefault();
+    const form = e.target;
+    const doador = {
+        id: Date.now(),
+        nome: form.nome.value,
+        cpf: form.cpf.value,
+        email: form.email.value,
+        telefone: form.telefone.value,
+        endereco: form.endereco.value,
         };
 
-        dados.doadores.push(doador);
-        salvarDados();
-        form.reset();
-        atualizarListaDoadores();
-        atualizarDashboard();
-        atualizarSelects();
-        alert("Doador cadastrado com sucesso!");
+    dados.doadores.push(doador);
+    salvarDados();
+    form.reset();
+    atualizarListaDoadores();
+    atualizarDashboard();
+    atualizarSelects();
+    alert("Doador cadastrado com sucesso!");
 }
 
 function cadastrarInstituicao(e) {
-        e.preventDefault();
-        const form = e.target;
-        const instituicao = {
-          id: Date.now(),
-          nome: form.nome.value,
-          cnpj: form.cnpj.value,
-          email: form.email.value,
-          telefone: form.telefone.value,
-          endereco: form.endereco.value,
+    e.preventDefault();
+    const form = e.target;
+    const instituicao = {
+        id: Date.now(),
+        nome: form.nome.value,
+        cnpj: form.cnpj.value,
+        email: form.email.value,
+        telefone: form.telefone.value,
+        endereco: form.endereco.value,
         };
 
-        dados.instituicoes.push(instituicao);
-        salvarDados();
-        form.reset();
-        atualizarListaInstituicoes();
-        atualizarDashboard();
-        atualizarSelects();
-        alert("Instituição cadastrada com sucesso!");
+    dados.instituicoes.push(instituicao);
+    salvarDados();
+    form.reset();
+    atualizarListaInstituicoes();
+    atualizarDashboard();
+    atualizarSelects();
+    alert("Instituição cadastrada com sucesso!");
 }
 
 function cadastrarVoluntario(e) {
-        e.preventDefault();
-        const form = e.target;
-        const voluntario = {
-          id: Date.now(),
-          nome: form.nome.value,
-          cpf: form.cpf.value,
-          email: form.email.value,
-          telefone: form.telefone.value,
+    e.preventDefault();
+    const form = e.target;
+    const voluntario = {
+        id: Date.now(),
+        nome: form.nome.value,
+        cpf: form.cpf.value,
+        email: form.email.value,
+        telefone: form.telefone.value,
         };
 
-        dados.voluntarios.push(voluntario);
-        salvarDados();
-        form.reset();
-        atualizarListaVoluntarios();
-        alert("Voluntário cadastrado com sucesso!");
+    dados.voluntarios.push(voluntario);
+    salvarDados();
+    form.reset();
+    atualizarListaVoluntarios();
+    alert("Voluntário cadastrado com sucesso!");
 }
 
 function registrarDoacao(e) {
-        e.preventDefault();
-        const form = e.target;
-        const doacao = {
-          id: Date.now(),
-          id_doador: form.id_doador.value,
-          id_instituicao: form.id_instituicao.value,
-          tipo: form.tipo.value,
-          quantidade: form.quantidade.value,
-          data_doacao: form.data_doacao.value,
+    e.preventDefault();
+    const form = e.target;
+    const doacao = {
+        id: Date.now(),
+        id_doador: form.id_doador.value,
+        id_instituicao: form.id_instituicao.value,
+        tipo: form.tipo.value,
+        quantidade: form.quantidade.value,
+        data_doacao: form.data_doacao.value,
         };
 
-        dados.doacoes.push(doacao);
-        salvarDados();
-        form.reset();
-        atualizarListaDoacoes();
-        atualizarDashboard();
-        alert("Doação registrada com sucesso!");
+    dados.doacoes.push(doacao);
+    salvarDados();
+    form.reset();
+    atualizarListaDoacoes();
+    atualizarDashboard();
+    alert("Doação registrada com sucesso!");
+}
+
+function cadastrarAlimento(e) {
+    e.preventDefault();
+    const form = e.target;
+    const alimento = {
+        id: Date.now(),
+        nome: form.nome.value,
+        categoria: form.categoria.value,
+        quantidade: form.quantidade.value,
+        unidade: form.unidade.value,
+        validade: form.validade.value,
+        };
+
+    dados.alimentos.push(alimento);
+    salvarDados();
+    form.reset();
+    atualizarListaAlimentos();
+    atualizarDashboard();
+    alert("Alimento cadastrado com sucesso!");
 }
