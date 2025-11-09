@@ -1,38 +1,38 @@
-      let dados = {
-        doadores: [],
-        instituicoes: [],
-        voluntarios: [],
-        doacoes: [],
-        alimentos: [],
-        coletas: [],
-        distribuicoes: [],
-        categorias: [],
-        campanhas: [],
-      };
+let dados = {
+    doadores: [],
+    instituicoes: [],
+    voluntarios: [],
+    doacoes: [],
+    alimentos: [],
+    coletas: [],
+    distribuicoes: [],
+    categorias: [],
+    campanhas: [],
+};
 
-      function carregarDados() {
-        const dadosSalvos = localStorage.getItem("bancoAlimentosDados");
-        if (dadosSalvos) {
-          dados = JSON.parse(dadosSalvos);
-          atualizarDashboard();
-          atualizarTodasListagens();
-        }
-      }
+function carregarDados() {
+    const dadosSalvos = localStorage.getItem("bancoAlimentosDados");
+    if (dadosSalvos) {
+        dados = JSON.parse(dadosSalvos);
+        atualizarDashboard();
+        atualizarTodasListagens();
+    }
+}
 
-      function salvarDados() {
-        localStorage.setItem("bancoAlimentosDados", JSON.stringify(dados));
-      }
+function salvarDados() {
+    localStorage.setItem("bancoAlimentosDados", JSON.stringify(dados));
+}
 
-     function toggleSubmenu(id) {
-        const submenu = document.getElementById("submenu-" + id);
-        const arrow = event.currentTarget.querySelector(".menu-arrow");
+function toggleSubmenu(id) {
+    const submenu = document.getElementById("submenu-" + id);
+    const arrow = event.currentTarget.querySelector(".menu-arrow");
 
-        submenu.classList.toggle("open");
-        arrow.classList.toggle("open");
-      }
+    submenu.classList.toggle("open");
+    arrow.classList.toggle("open");
+}
 
-    function showSection(sectionId, event) {
-        if (event) event.stopPropagation();
+function showSection(sectionId, event) {
+    if (event) event.stopPropagation();
 
     document
         .querySelectorAll(".content-section")
@@ -42,4 +42,14 @@
         .forEach((m) => m.classList.remove("active"));
     document
         .querySelectorAll(".submenu-item")
-        .forEach((m) => m.classList.remove("active"));}
+        .forEach((m) => m.classList.remove("active"));
+
+    document.getElementById(sectionId).classList.add("active");
+         if (event) {
+          event.currentTarget.classList.add("active");
+        } else {
+          document
+            .querySelector([onclick="showSection('${sectionId}')"])
+            ?.classList.add("active");
+        }
+}
