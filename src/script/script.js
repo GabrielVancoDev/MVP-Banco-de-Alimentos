@@ -459,3 +459,81 @@ function atualizarListaCampanhas() {
             </tr>`;
         }).join("");
 }
+
+function excluirDoador(id) {
+    if (confirm("Deseja realmente excluir este doador?")) {
+        dados.doadores = dados.doadores.filter((d) => d.id !== id);
+        salvarDados();
+        atualizarListaDoadores();
+        atualizarDashboard();
+        atualizarSelects();
+    }
+}
+
+function excluirInstituicao(id) {
+    if (confirm("Deseja realmente excluir esta instituição?")) {
+        dados.instituicoes = dados.instituicoes.filter((i) => i.id !== id);
+        salvarDados();
+        atualizarListaInstituicoes();
+        atualizarDashboard();
+        atualizarSelects();
+    }
+}
+
+function excluirVoluntario(id) {
+    if (confirm("Deseja realmente excluir este voluntário?")) {
+        dados.voluntarios = dados.voluntarios.filter((v) => v.id !== id);
+        salvarDados();
+        atualizarListaVoluntarios();
+    }
+}
+
+function excluirDoacao(id) {
+    if (confirm("Deseja realmente excluir esta doação?")) {
+        dados.doacoes = dados.doacoes.filter((d) => d.id !== id);
+        salvarDados();
+        atualizarListaDoacoes();
+        atualizarDashboard();
+    }
+}
+
+function excluirAlimento(id) {
+    if (confirm("Deseja realmente excluir este alimento?")) {
+        dados.alimentos = dados.alimentos.filter((a) => a.id !== id);
+        salvarDados();
+        atualizarListaAlimentos();
+        atualizarDashboard();
+    }
+}
+
+function excluirColeta(id) {
+    if (confirm("Deseja realmente excluir esta coleta?")) {
+        dados.coletas = dados.coletas.filter((c) => c.id !== id);
+        salvarDados();
+        atualizarListaColetas();
+    }
+}
+
+function excluirDistribuicao(id) {
+    if (confirm("Deseja realmente excluir esta distribuição?")) {
+        dados.distribuicoes = dados.distribuicoes.filter((d) => d.id !== id);
+        salvarDados();
+        atualizarListaDistribuicoes();
+    }
+}
+
+function excluirCategoria(id) {
+    if (confirm("Deseja realmente excluir esta categoria?")) {
+        dados.categorias = dados.categorias.filter((c) => c.id !== id);
+        salvarDados();
+        atualizarListaCategorias();
+    }
+}
+
+function excluirCampanha(id) {
+    if (confirm("Deseja realmente excluir esta campanha?")) {
+        dados.campanhas = dados.campanhas.filter((c) => c.id !== id);
+        salvarDados();
+        atualizarListaCampanhas();
+    }
+}
