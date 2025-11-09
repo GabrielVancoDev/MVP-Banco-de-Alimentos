@@ -74,3 +74,24 @@ function cadastrarDoador(e) {
         atualizarSelects();
         alert("Doador cadastrado com sucesso!");
 }
+
+function cadastrarInstituicao(e) {
+        e.preventDefault();
+        const form = e.target;
+        const instituicao = {
+          id: Date.now(),
+          nome: form.nome.value,
+          cnpj: form.cnpj.value,
+          email: form.email.value,
+          telefone: form.telefone.value,
+          endereco: form.endereco.value,
+        };
+
+        dados.instituicoes.push(instituicao);
+        salvarDados();
+        form.reset();
+        atualizarListaInstituicoes();
+        atualizarDashboard();
+        atualizarSelects();
+        alert("Instituição cadastrada com sucesso!");
+}
