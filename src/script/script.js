@@ -153,3 +153,21 @@ function cadastrarAlimento(e) {
     atualizarDashboard();
     alert("Alimento cadastrado com sucesso!");
 }
+
+function registrarColeta(e) {
+    e.preventDefault();
+    const form = e.target;
+    const coleta = {
+        id: Date.now(),
+        id_doador: form.id_doador.value,
+        data_coleta: form.data_coleta.value,
+        responsavel: form.responsavel.value,
+        observacoes: form.observacoes.value,
+        };
+
+    dados.coletas.push(coleta);
+    salvarDados();
+    form.reset();
+    atualizarListaColetas();
+    alert("Coleta registrada com sucesso!");
+}
