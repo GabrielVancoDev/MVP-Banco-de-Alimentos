@@ -196,3 +196,21 @@ function cadastrarCategoria(e) {
     atualizarListaCategorias();
     alert("Categoria cadastrada com sucesso!");
 }
+
+function cadastrarCampanha(e) {
+    e.preventDefault();
+    const form = e.target;
+    const campanha = {
+            id: Date.now(),
+            nome: form.nome.value,
+            descricao: form.descricao.value,
+            data_inicio: form.data_inicio.value,
+            data_fim: form.data_fim.value,
+        };
+
+    dados.campanhas.push(campanha);
+    salvarDados();
+    form.reset();
+    atualizarListaCampanhas();
+    alert("Campanha criada com sucesso!");
+}
