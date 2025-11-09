@@ -785,5 +785,9 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
 import { neon } from '@netlify/neon';
-const sql = neon(); // automatically uses env NETLIFY_DATABASE_URL
-const [post] = await sql`SELECT * FROM posts WHERE id = ${postId}`;
+const sql = neon();
+
+async function buscarPost(postId) {
+  const [post] = await sql`SELECT * FROM posts WHERE id = ${postId}`;
+  return post;
+}
