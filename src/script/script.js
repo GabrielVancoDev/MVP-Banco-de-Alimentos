@@ -537,3 +537,19 @@ function excluirCampanha(id) {
         atualizarListaCampanhas();
     }
 }
+
+function atualizarSelects() {
+    const selectsDoador = document.querySelectorAll("#select-doador, #select-doador-coleta");
+    selectsDoador.forEach((select) => {
+            const valorAtual = select.value;
+            select.innerHTML = '<option value="">Selecione um doador</option>' + dados.doadores.map((d) => <option value="${d.id}">${d.nome}</option>).join("");
+            select.value = valorAtual;
+        });
+
+    const selectsInstituicao = document.querySelectorAll("#select-instituicao, #select-instituicao-dist");
+    selectsInstituicao.forEach((select) => {
+        const valorAtual = select.value;
+        select.innerHTML = '<option value="">Selecione uma instituição</option>' + dados.instituicoes.map((i) => <option value="${i.id}">${i.nome}</option>).join("");
+        select.value = valorAtual;
+    });
+}
