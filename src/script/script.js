@@ -352,3 +352,32 @@ function atualizarListaAlimentos() {
             </tr>`
         ).join("");
 }
+
+function atualizarListaColetas() {
+        const tbody = document.getElementById("lista-coletas");
+        if (dados.coletas.length === 0) {
+          tbody.innerHTML =
+            '<tr><td colspan="5" style="text-align: center; color: #7f8c8d;">Nenhuma coleta registrada</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = dados.coletas.map((c) => {
+            const doador = dados.doadores.find((x) => x.id == c.id_doador);
+            return 
+                `<tr>
+                    <td>${new Date(c.data_coleta).toLocaleDateString(
+                        "pt-BR"
+                        )}</td>
+                    <td>${doador ? doador.nome : "N/A"}</td>
+                    <td>${c.responsavel}</td>
+                    <td>${c.observacoes || "-"}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn btn-danger btn-small" onclick="excluirColeta(${
+                                c.id
+                            })">Excluir</button>
+                        </div>
+                    </td>
+                </tr>`;
+        }).join("");
+}
