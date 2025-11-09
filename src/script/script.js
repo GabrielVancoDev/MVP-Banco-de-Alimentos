@@ -293,3 +293,34 @@ function atualizarListaVoluntarios() {
             </tr>`
           ).join("");
 }
+
+function atualizarListaDoacoes() {
+    const tbody = document.getElementById("lista-doacoes");
+    if (dados.doacoes.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #7f8c8d;">Nenhuma doação registrada</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = dados.doacoes.map((d) => {
+            const doador = dados.doadores.find((x) => x.id == d.id_doador);
+            const instituicao = dados.instituicoes.find((x) => x.id == d.id_instituicao);
+            return 
+            
+            `<tr>
+                <td>${new Date(d.data_doacao).toLocaleDateString(
+                    "pt-BR"
+                )}</td>
+                <td>${doador ? doador.nome : "N/A"}</td>
+                <td>${instituicao ? instituicao.nome : "N/A"}</td>
+                <td>${d.tipo}</td>
+                <td>${d.quantidade}</td>
+                <td>
+                    <div class="action-buttons">
+                        <button class="btn btn-danger btn-small" onclick="excluirDoacao(${
+                            d.id
+                        })">Excluir</button>
+                    </div>
+                </td>
+            </tr>`;
+        }).join("");
+}
