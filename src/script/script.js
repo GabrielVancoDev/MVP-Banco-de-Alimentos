@@ -553,3 +553,16 @@ function atualizarSelects() {
         select.value = valorAtual;
     });
 }
+
+function atualizarTodasListagens() {
+    atualizarListaDoadores();
+    atualizarListaInstituicoes();
+    atualizarListaVoluntarios();
+    atualizarListaDoacoes();
+    atualizarListaAlimentos();
+    atualizarListaColetas();
+    atualizarListaDistribuicoes();
+    atualizarListaCategorias();
+    atualizarListaCampanhas();
+    atualizarSelects();
+}
