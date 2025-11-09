@@ -221,3 +221,27 @@ function atualizarDashboard() {
     document.getElementById("total-alimentos").textContent = dados.alimentos.length;
     document.getElementById("total-instituicoes").textContent = dados.instituicoes.length;
 }
+
+function atualizarListaDoadores() {
+    const tbody = document.getElementById("lista-doadores");
+    if (dados.doadores.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #7f8c8d;">Nenhum doador cadastrado</td></tr>';
+            return;
+        }
+
+    tbody.innerHTML = dados.doadores.map((d) =>
+            `<tr>
+                <td>${d.nome}</td>
+                <td>${d.cpf}</td>
+                <td>${d.email || "-"}</td>
+                <td>${d.telefone || "-"}</td>
+                <td>
+                    <div class="action-buttons">
+                        <button class="btn btn-danger btn-small" onclick="excluirDoador(${
+                            d.id
+                        })">Excluir</button>
+                    </div>
+                </td>
+            </tr>`
+        ).join("");
+}
