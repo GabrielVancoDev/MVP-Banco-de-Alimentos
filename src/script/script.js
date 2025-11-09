@@ -407,3 +407,22 @@ function atualizarListaDistribuicoes() {
                 </tr>`;
         }).join("");
 }
+
+function atualizarListaCategorias() {
+    const tbody = document.getElementById("lista-categorias");
+    if (dados.categorias.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="2" style="text-align: center; color: #7f8c8d;">Nenhuma categoria cadastrada</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = dados.categorias.map((c) => 
+            `<tr>
+                <td>${c.nome_categoria}</td>
+                <td>
+                    <div class="action-buttons">
+                            <button class="btn btn-danger btn-small" onclick="excluirCategoria(${c.id})">Excluir</button>
+                    </div>
+                </td>
+            </tr>`
+        ).join("");
+}
