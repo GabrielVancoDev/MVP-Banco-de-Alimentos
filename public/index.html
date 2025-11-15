@@ -211,11 +211,14 @@
                 </div>
                 <div class="form-group">
                   <label>CPF *</label>
+                  <!-- Limitar caracteres -->
                   <input
                     type="text"
+                    maxlength="11"
                     name="cpf"
                     placeholder="000.000.000-00"
-                    required
+                    required 
+                     
                   />
                 </div>
               </div>
@@ -227,6 +230,7 @@
                 <div class="form-group">
                   <label>Telefone</label>
                   <input
+                  maxlength="12"
                     type="tel"
                     name="telefone"
                     placeholder="(00) 00000-0000"
@@ -288,6 +292,7 @@
                 <div class="form-group">
                   <label>CNPJ *</label>
                   <input
+                  maxlength="14"
                     type="text"
                     name="cnpj"
                     placeholder="00.000.000/0000-00"
@@ -301,8 +306,9 @@
                   <input type="email" name="email" />
                 </div>
                 <div class="form-group">
+
                   <label>Telefone</label>
-                  <input type="tel" name="telefone" />
+                  <input type="tel" name="telefone" maxlength="12"/>
                 </div>
               </div>
               <div class="form-group">
@@ -374,6 +380,7 @@
                     type="tel"
                     name="telefone"
                     placeholder="(00) 00000-0000"
+                    maxlength="12"
                   />
                 </div>
               </div>
@@ -910,21 +917,14 @@
       </main>
     </div>
 </main>
-    <script src="src/script/script.js"></script>
-
-   
     <!-- Validações -->
-    <script src="src/script/validacoes.js"></script>
-    <!-- Scripts de serviços -->
-    <script src="src/script/services/doadores.js"></script>
-    <script src="src/script/services/categorias.js"></script>
-    <script src="src/script/services/campanhas.js"></script>
+    <script src="../src/script.js"></script>
+    <script src="../src/modules/validacoes.js"></script>
 
-    <!-- Scripts de Interface do Sistema -->
-      <script src="src/script/ui/menuLateral.js"></script>
-    <script src="src/script/ui/doadores.js"></script>
-    <script src="src/script/ui/categorias.js"></script>
-    <script src="src/script/ui/campanhas.js"></script>
-    <script src="src/script/ui/relatorios.js"></script>
+      <!-- Modulos -->
+      <script src="../src/modules/validacoes.js"></script>
+      <script src="../src/modules/doadores/doadores.js"></script>
+      <script src="../src/modules/doadores/doadores_ui.js"></script>
+
   </body>
 </html>
